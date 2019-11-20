@@ -22,6 +22,10 @@ export default ({ apiTodos }) => {
 		inputEl.current.focus();
 	};
 
+	const deleteTodo = id => {
+		setTodos(todos => todos.filter(el => el.id !== id));
+	};
+
 	const handleInput = ({ target: { value } }) => {
 		setTodoText(value);
 	};
@@ -34,7 +38,7 @@ export default ({ apiTodos }) => {
 			</form>
 			<ul>
 				{todos.map(({ text, id }) => (
-					<Todo text={text} key={id} />
+					<Todo text={text} id={id} key={id} deleteTodo={deleteTodo} />
 				))}
 			</ul>
 		</div>
